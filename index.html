@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishu Devs — Portfolio</title>
+<meta name="description" content="Vishu Devs — Web & Game Developer. Websites, Discord bots, and Minecraft servers built for online communities.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0a'/%3E%3Ctext x='50' y='70' font-family='Arial,Helvetica,sans-serif' font-weight='900' font-size='58' fill='%23ffffff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Vishu Devs — Web & Game Developer">
+<meta property="og:description" content="Websites, Discord bots, and Minecraft servers built for online communities.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vishu Devs — Web & Game Developer">
+<meta name="twitter:description" content="Websites, Discord bots, and Minecraft servers built for online communities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-950:#0a0a0a;
+    --teal-900:#151515;
+    --teal-800:#202020;
+    --teal-700:#2c2c2c;
+    --teal-500:#8a8a8a;
+    --teal-300:#a8a8a8;
+    --mint:#f5f5f5;
+    --coral:#ffffff;
+    --line: rgba(255,255,255,0.15);
+    --ghost: rgba(255,255,255,0.06);
+    --header-bg: rgba(10,10,10,0.85);
+  }
+  html[data-theme="light"]{
+    --teal-950:#ffffff;
+    --teal-900:#f1f1f1;
+    --teal-800:#e6e6e6;
+    --teal-700:#d8d8d8;
+    --teal-500:#6b6b6b;
+    --teal-300:#525252;
+    --mint:#0a0a0a;
+    --coral:#000000;
+    --line: rgba(0,0,0,0.15);
+    --ghost: rgba(0,0,0,0.05);
+    --header-bg: rgba(255,255,255,0.85);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+  body{
+    background:var(--teal-950);
+    color:var(--mint);
+    font-family:'Space Grotesk',sans-serif;
+    line-height:1.5;
+    transition:background 0.3s ease, color 0.3s ease;
+    width:100%;
+    max-width:100vw;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:11px 6vw;
+    background:var(--header-bg);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    gap:1rem;
+    transition:background 0.3s ease;
+  }
+  .logo{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:1px;}
+  .logo span{color:var(--coral);}
+  nav{display:flex;gap:2.4rem;font-size:0.87rem;}
+  nav a{opacity:0.75;transition:opacity 0.2s;}
+  nav a:hover{opacity:1;color:var(--teal-300);}
+  .header-right{display:flex;align-items:center;gap:0.8rem;}
+  .nav-toggle{display:none;background:none;border:none;color:var(--mint);font-size:1.35rem;cursor:pointer;transition:transform 0.3s ease, color 0.3s ease;}
+  .nav-toggle.open{transform:rotate(90deg);color:var(--coral);}
+  .nav-overlay{display:none;}
+
+  .theme-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:31px;height:31px;border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--teal-900);
+    color:var(--mint);
+    cursor:pointer;
+    transition:border-color 0.2s, transform 0.2s, background 0.3s;
+    flex-shrink:0;
+  }
+  .theme-toggle:hover{border-color:var(--teal-500);transform:translateY(-2px);}
+  .theme-toggle svg{width:14px;height:14px;}
+  .theme-toggle .icon-moon{display:block;}
+  .theme-toggle .icon-sun{display:none;}
+  html[data-theme="light"] .theme-toggle .icon-moon{display:none;}
+  html[data-theme="light"] .theme-toggle .icon-sun{display:block;}
+
+  /* ============ HERO — big split typography like the reference ============ */
+  .hero{
+    padding:5vw 6vw 3vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    background:radial-gradient(120% 140% at 20% 0%, var(--teal-800) 0%, var(--teal-900) 55%, var(--teal-950) 100%);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:5rem 4vw 4rem;
+    position:relative;
+    min-height:70vh;
+    display:flex;flex-direction:column;justify-content:center;
+    overflow:hidden;
+    transition:background 0.3s ease;
+  }
+  .hero-inner::before{
+    content:'</>';
+    position:absolute;
+    right:-2vw;top:-4vw;
+    font-family:'Anton',sans-serif;
+    font-size:24vw;
+    color:var(--ghost);
+    line-height:1;
+    pointer-events:none;
+  }
+  .hero-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;color:var(--teal-300);
+    margin-bottom:1.6rem;letter-spacing:0.5px;
+    display:flex;align-items:center;gap:0.6rem;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 10px var(--coral);}
+  .hero-title{
+    font-size:clamp(3.2rem, 11vw, 8.5rem);
+    letter-spacing:-0.01em;
+    line-height:0.86;
+    display:flex;flex-wrap:wrap;
+    align-items:center;
+    gap:0 1.5vw;
+    position:relative;z-index:1;
+  }
+  .hero-title .out{-webkit-text-stroke:2px var(--mint);color:transparent;}
+  .hero-title .fill{color:var(--mint);}
+  .hero-title .accent{color:var(--coral);}
+  .hero-roles{
+    margin-top:1.6rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:1rem;color:var(--teal-300);
+    display:flex;gap:2rem;flex-wrap:wrap;
+    border-top:1px solid var(--line);
+    padding-top:1.6rem;
+    max-width:640px;
+  }
+  .hero-actions{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;}
+  .btn{
+    padding:0.95rem 1.8rem;border-radius:999px;font-size:0.95rem;font-weight:600;
+    border:1px solid var(--line);display:inline-flex;align-items:center;gap:0.5rem;
+    transition:transform 0.15s, background 0.15s;cursor:pointer;
+  }
+  .btn-fill{background:var(--coral);color:var(--teal-950);border-color:var(--coral);}
+  .btn-fill:hover{transform:translateY(-3px);}
+  .btn-ghost{color:var(--mint);}
+  .btn-ghost:hover{border-color:var(--teal-300);transform:translateY(-3px);}
+
+  /* ============ SLIDE-CARD GRID (mimics the reference portfolio tiles) ============ */
+  .deck{padding:5rem 6vw;}
+  .deck-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:2.6rem;flex-wrap:wrap;gap:1rem;
+  }
+  .deck-title{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,3.4vw,2.8rem);text-transform:uppercase;letter-spacing:0.5px;}
+  .deck-count{font-family:'JetBrains Mono',monospace;color:var(--teal-500);font-size:0.85rem;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.2rem;
+  }
+  .card{
+    background:linear-gradient(155deg, var(--teal-800), var(--teal-900) 70%);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:1.8rem;
+    min-height:220px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .card:hover{border-color:var(--teal-500);transform:translateY(-5px);}
+  .card.wide{grid-column:span 2;}
+  .card-label{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--coral);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem;
+  }
+  .card-title{font-family:'Anton',sans-serif;font-size:1.5rem;text-transform:uppercase;letter-spacing:0.3px;line-height:1.1;}
+  .card-desc{font-size:0.92rem;color:var(--teal-300);margin-top:0.9rem;max-width:46ch;}
+  .card-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.2rem;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+    padding:0.3rem 0.7rem;border:1px solid var(--line);border-radius:999px;color:var(--mint);opacity:0.85;
+  }
+  .card-num{
+    position:absolute;top:1.4rem;right:1.6rem;
+    font-family:'Anton',sans-serif;font-size:2.4rem;color:var(--ghost);
+  }
+
+  /* dark card variant for skill/big statement */
+  .card.dark{background:linear-gradient(155deg, var(--teal-900), var(--teal-950));}
+  .card.accent{background:linear-gradient(155deg, var(--teal-700), var(--teal-900));}
+  .card.accent .card-label{color:var(--teal-300);}
+
+  /* ============ ABOUT — terminal-window style, matches Work section ============ */
+  .about-terminal-body{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;
+    padding:2.6rem 2.8vw;min-width:0;
+  }
+  .about-comment{
+    font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--teal-500);
+    margin-bottom:1.1rem;
+  }
+  .about-comment span{color:var(--coral);}
+  .about-lead{font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.55;}
+  .about-lead .accent{color:var(--coral);}
+  .about-sub{margin-top:1.2rem;color:var(--teal-300);font-size:0.98rem;line-height:1.7;max-width:60ch;}
+  .about-highlights{display:flex;flex-direction:column;}
+  .about-highlight{
+    display:flex;gap:1.1rem;align-items:flex-start;
+    padding:1.3rem 0;border-bottom:1px solid var(--line);
+  }
+  .about-highlight:first-child{border-top:1px solid var(--line);}
+  .about-highlight-num{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--coral);flex-shrink:0;}
+  .about-highlight-text{font-size:0.9rem;color:var(--teal-300);line-height:1.6;}
+  @media (max-width:900px){
+    .about-terminal-body{grid-template-columns:1fr;gap:2rem;padding:2rem 6vw;}
+  }
+
+  /* ============ BACK TO TOP ============ */
+  .back-to-top{
+    position:fixed;bottom:1.6rem;right:1.6rem;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--coral);color:var(--teal-950);
+    display:flex;align-items:center;justify-content:center;
+    border:none;cursor:pointer;z-index:55;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+    opacity:0;pointer-events:none;transform:translateY(12px);
+    transition:opacity 0.3s ease, transform 0.3s ease;
+  }
+  .back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .back-to-top:hover{transform:translateY(-3px);}
+  .back-to-top svg{width:18px;height:18px;}
+
+  /* ============ FOOTER SOCIAL ============ */
+  .footer-social{display:flex;gap:1.1rem;align-items:center;}
+  .footer-social a{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:50%;
+    border:1px solid var(--line);color:var(--teal-300);
+    transition:color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .footer-social a:hover{color:var(--mint);border-color:var(--teal-500);transform:translateY(-2px);}
+  .footer-social svg{width:15px;height:15px;}
+  .exp-list{display:flex;flex-direction:column;}
+  .exp-row{
+    display:grid;grid-template-columns:80px 1fr 220px;gap:2rem;align-items:center;
+    padding:2.1rem 0;border-bottom:1px solid var(--line);
+  }
+  .exp-row:first-child{border-top:1px solid var(--line);}
+  .exp-idx{font-family:'Anton',sans-serif;font-size:1.8rem;color:var(--teal-700);}
+  .exp-role{font-size:1.35rem;font-weight:700;}
+  .exp-org{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--teal-300);margin-top:0.3rem;}
+  .exp-period{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--teal-500);text-align:right;}
+
+  /* ============ CONTACT — bold statement card ============ */
+  .contact-card{
+    background:linear-gradient(135deg, var(--teal-700), var(--teal-900));
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:5rem 5vw;
+    display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+    align-items:center;
+    transition:background 0.3s ease;
+  }
+  .contact-title{font-family:'Anton',sans-serif;font-size:clamp(2rem,5vw,3.6rem);text-transform:uppercase;line-height:1;}
+  .contact-title .accent{color:var(--coral);}
+  .contact-sub{margin-top:1.4rem;color:var(--teal-300);max-width:38ch;}
+  form{display:flex;flex-direction:column;gap:1.1rem;}
+  .field{display:flex;flex-direction:column;gap:0.5rem;}
+  label{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--teal-300);}
+  input, textarea{
+    background:rgba(7,34,43,0.6);border:1px solid var(--line);border-radius:10px;
+    padding:0.9rem 1rem;color:var(--mint);font-family:'Space Grotesk',sans-serif;font-size:0.98rem;resize:vertical;
+  }
+  input:focus, textarea:focus{outline:2px solid var(--coral);outline-offset:1px;}
+  .send-btn{align-self:flex-start;margin-top:0.3rem;}
+  .form-note{font-size:0.78rem;color:var(--teal-500);}
+  .form-sent{
+    display:none;align-items:center;gap:0.7rem;
+    padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:12px;
+    background:rgba(7,34,43,0.5);font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--mint);
+  }
+  .form-sent.show{display:flex;animation:heroIn 0.5s ease both;}
+  .form-sent .status-dot{background:var(--coral);box-shadow:0 0 8px var(--coral);}
+  form.hide{display:none;}
+
+  footer{
+    padding:2.4rem 6vw;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--teal-500);
+  }
+
+  /* ============ STATUS BADGES (in hero) ============ */
+  .status-row{
+    display:flex;gap:0.9rem;flex-wrap:wrap;margin-top:1.6rem;position:relative;z-index:1;
+  }
+  .status-badge{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    padding:0.5rem 0.9rem;border:1px solid var(--line);border-radius:999px;
+    background:rgba(7,34,43,0.5);color:var(--teal-300);
+  }
+  .status-dot{width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 8px var(--coral);flex-shrink:0;}
+  .status-dot.busy{background:var(--teal-300);box-shadow:0 0 8px var(--teal-300);}
+
+  /* ============ STATS STRIP ============ */
+  .stats{
+    padding:0 6vw 5rem;
+  }
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  }
+  .stat{
+    padding:2.4rem 1.6rem;text-align:center;
+    border-right:1px solid var(--line);
+    background:var(--teal-900);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-num{font-family:'Anton',sans-serif;font-size:clamp(2rem,4vw,3rem);color:var(--mint);line-height:1;}
+  .stat-num span{color:var(--coral);}
+  .stat-label{margin-top:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--teal-300);text-transform:uppercase;letter-spacing:0.5px;}
+
+  /* ============ SERVICES / PRICING ============ */
+  .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+  .price-card{
+    background:var(--teal-900);border:1px solid var(--line);border-radius:18px;
+    padding:2rem 1.6rem;display:flex;flex-direction:column;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .price-card:hover{border-color:var(--teal-500);transform:translateY(-5px);}
+  .price-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--coral);text-transform:uppercase;letter-spacing:1px;}
+  .price-title{font-family:'Anton',sans-serif;font-size:1.4rem;text-transform:uppercase;margin-top:0.6rem;}
+  .price-amount{font-family:'JetBrains Mono',monospace;font-size:1.6rem;color:var(--mint);margin-top:1rem;}
+  .price-amount span{font-size:0.85rem;color:var(--teal-300);}
+  .price-features{list-style:none;margin-top:1.4rem;display:flex;flex-direction:column;gap:0.7rem;flex-grow:1;}
+  .price-features li{font-size:0.86rem;color:var(--teal-300);display:flex;gap:0.5rem;}
+  .price-features li::before{content:'—';color:var(--coral);}
+  .price-cta{margin-top:1.6rem;text-align:center;padding:0.75rem;border-radius:999px;border:1px solid var(--line);font-size:0.88rem;font-weight:600;transition:background 0.2s, transform 0.2s;}
+  .price-cta:hover{background:var(--coral);color:var(--teal-950);transform:translateY(-2px);}
+
+  /* ============ WORK — code-editor style tabbed showcase ============ */
+  .work-terminal{
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--teal-900);
+  }
+  .work-terminal-bar{
+    display:flex;align-items:center;gap:1rem;
+    padding:0.9rem 1.2rem;
+    background:var(--teal-800);
+    border-bottom:1px solid var(--line);
+  }
+  .work-terminal-dots{display:flex;gap:0.4rem;}
+  .work-terminal-dots span{width:11px;height:11px;border-radius:50%;background:var(--teal-700);}
+  .work-terminal-path{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--teal-500);}
+  .work-terminal-body{display:grid;grid-template-columns:260px 1fr;min-height:380px;min-width:0;}
+  .work-files{
+    border-right:1px solid var(--line);
+    padding:0.6rem 0;
+    display:flex;flex-direction:column;
+    min-width:0;
+  }
+  .work-file{
+    font-family:'JetBrains Mono',monospace;font-size:0.82rem;
+    text-align:left;background:none;border:none;color:var(--teal-300);
+    padding:0.85rem 1.3rem;cursor:pointer;
+    border-left:2px solid transparent;
+    display:flex;align-items:center;gap:0.6rem;
+    transition:background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .work-file::before{content:'○';font-size:0.6rem;color:var(--teal-700);}
+  .work-file:hover{background:var(--ghost);color:var(--mint);}
+  .work-file.active{color:var(--coral);border-left-color:var(--coral);background:var(--ghost);}
+  .work-file.active::before{content:'●';color:var(--coral);}
+  .work-panels{padding:2.6rem 2.6vw;position:relative;min-width:0;}
+  .work-panel{display:none;animation:workFadeIn 0.35s ease both;}
+  .work-panel.active{display:block;}
+  @keyframes workFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .work-panel-label{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--teal-500);}
+  .work-panel-label span{color:var(--coral);}
+  .work-panel-title{font-family:'Anton',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);text-transform:uppercase;line-height:1.05;margin-top:0.6rem;}
+  .work-panel-desc{font-size:0.98rem;color:var(--teal-300);margin-top:1.1rem;max-width:58ch;line-height:1.6;}
+  .work-panel-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem;}
+  @media (max-width:900px){
+    .work-terminal-body{grid-template-columns:1fr;}
+    .work-files{
+      flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--line);
+      scrollbar-width:none;
+    }
+    .work-files::-webkit-scrollbar{display:none;}
+    .work-file{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;}
+    .work-file.active{border-left:none;border-bottom-color:var(--coral);}
+    .work-panels{padding:2rem 6vw;}
+  }
+
+  /* ============ SKILLS — monogram showcase cards ============ */
+  .skills-showcase{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.3rem;
+  }
+  .skill-card2{
+    background:var(--teal-900);
+    border:1px solid var(--line);
+    border-top:2px solid var(--coral);
+    border-radius:4px 4px 16px 16px;
+    padding:2.1rem 2rem;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.25s, background 0.25s;
+  }
+  .skill-card2:hover{transform:translateY(-5px);background:var(--teal-800);}
+  .skill-mono{
+    position:absolute;top:0.6rem;right:1.4rem;
+    font-family:'Anton',sans-serif;font-size:4.4rem;color:var(--ghost);line-height:1;
+    pointer-events:none;
+  }
+  .skill-card2-title{font-family:'Anton',sans-serif;font-size:1.35rem;text-transform:uppercase;position:relative;z-index:1;}
+  .skill-card2-desc{font-size:0.9rem;color:var(--teal-300);margin-top:0.6rem;max-width:44ch;position:relative;z-index:1;}
+  .skill-card2-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.2rem;position:relative;z-index:1;}
+  .skill-card2-tags span{
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--teal-300);
+    padding-bottom:0.2rem;border-bottom:1px solid var(--line);
+  }
+  @media (max-width:900px){
+    .skills-showcase{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:900px){
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .stat{border-bottom:1px solid var(--line);}
+    .pricing-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .stats-grid, .pricing-grid{grid-template-columns:1fr;}
+    .stat{border-right:none;}
+  }
+  @media (max-width:900px){
+    nav{
+      position:fixed;top:0;right:0;height:100dvh;width:min(78vw,300px);
+      background:var(--teal-950);flex-direction:column;align-items:flex-start;
+      padding:6.5rem 2.2rem 2rem;border-left:1px solid var(--line);
+      gap:1.6rem;z-index:70;
+      box-shadow:-18px 0 40px rgba(0,0,0,0.35);
+      transform:translateX(100%);
+      transition:transform 0.4s cubic-bezier(.16,1,.3,1);
+      display:flex;
+    }
+    nav.open{transform:translateX(0);}
+    nav a{
+      font-size:1.15rem;opacity:0;transform:translateX(16px);
+      transition:opacity 0.35s ease, transform 0.35s ease;
+    }
+    nav.open a{opacity:1;transform:translateX(0);}
+    nav.open a:nth-child(1){transition-delay:0.08s;}
+    nav.open a:nth-child(2){transition-delay:0.14s;}
+    nav.open a:nth-child(3){transition-delay:0.2s;}
+    nav.open a:nth-child(4){transition-delay:0.26s;}
+    .nav-overlay{
+      display:block;
+      position:fixed;inset:0;background:rgba(0,0,0,0.5);
+      opacity:0;pointer-events:none;transition:opacity 0.35s ease;z-index:60;
+    }
+    .nav-overlay.open{opacity:1;pointer-events:auto;}
+    .nav-toggle{display:block;position:relative;z-index:80;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .card.wide{grid-column:span 2;}
+    .contact-card{grid-template-columns:1fr;padding:3rem 6vw;}
+  }
+  @media (max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .card.wide{grid-column:span 1;}
+  }
+  /* ============ ANIMATIONS ============ */
+  @keyframes heroIn{
+    from{opacity:0;transform:translateY(24px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .hero-tag{animation:heroIn 0.7s ease both;}
+  .hero-title{animation:heroIn 0.7s ease both;}
+  .hero-title:nth-of-type(1){animation-delay:0.05s;}
+  .hero-title:nth-of-type(2){animation-delay:0.15s;}
+  .hero-roles{animation:heroIn 0.7s ease both;animation-delay:0.25s;}
+  .hero-actions{animation:heroIn 0.7s ease both;animation-delay:0.35s;}
+  .status-row{animation:heroIn 0.7s ease both;animation-delay:0.45s;}
+
+  .reveal{
+    opacity:0;transform:translateY(28px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VISHU<span> DEVS</span></div>
+  <nav id="nav">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#services">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" aria-pressed="false">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag"><span class="dot"></span>OPEN TO FULL-TIME & FREELANCE WORK</div>
+      <div class="hero-title display">
+        <span class="out">WEB</span><span class="accent">&</span><span class="fill">SERVER</span>
+      </div>
+      <div class="hero-title display">
+        <span class="fill">DEV</span><span class="out">ELOPER</span>
+      </div>
+      <div class="hero-roles">
+        <span>WEB DEVELOPMENT</span>
+        <span>DISCORD BOTS & SERVERS</span>
+        <span>MINECRAFT SERVERS</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-fill" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="status-row">
+        <span class="status-badge"><span class="status-dot"></span>Discord Bot</span>
+        <span class="status-badge"><span class="status-dot"></span>Minecraft Server</span>
+        <span class="status-badge"><span class="status-dot busy"></span>Taking new projects — Limited slots</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="deck" id="about">
+    <div class="deck-head">
+      <div class="deck-title">About</div>
+      <div class="deck-count mono">01 / 05</div>
+    </div>
+    <div class="work-terminal reveal">
+      <div class="work-terminal-bar">
+        <div class="work-terminal-dots"><span></span><span></span><span></span></div>
+        <div class="work-terminal-path">~/about.js</div>
+      </div>
+      <div class="about-terminal-body">
+        <div class="about-text">
+          <div class="about-comment">// <span>whoami</span></div>
+          <p class="about-lead">Hi, I'm <span class="accent">Vishu</span> — a self-taught developer who builds things for online communities: websites, Discord bots, and Minecraft servers people actually enjoy using.</p>
+          <p class="about-sub">Started out configuring Minecraft servers for fun, picked up JavaScript to build Discord bots for those same communities, and ended up shipping full websites along the way. These days I split time between freelance projects and leveling up my own tools.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="about-highlight">
+            <span class="about-highlight-num">01</span>
+            <span class="about-highlight-text">Clean, maintainable code — no bloated frameworks unless they're actually needed.</span>
+          </div>
+          <div class="about-highlight">
+            <span class="about-highlight-num">02</span>
+            <span class="about-highlight-text">Fast communicator — usually online in Discord, replies within a day.</span>
+          </div>
+          <div class="about-highlight">
+            <span class="about-highlight-num">03</span>
+            <span class="about-highlight-text">Comfortable across the whole stack — from server config to frontend polish.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deck" id="work">
+    <div class="deck-head">
+      <div class="deck-title">Selected Work</div>
+      <div class="deck-count mono">02 / 05</div>
+    </div>
+    <div class="work-terminal reveal">
+      <div class="work-terminal-bar">
+        <div class="work-terminal-dots"><span></span><span></span><span></span></div>
+        <div class="work-terminal-path">~/selected-work</div>
+      </div>
+      <div class="work-terminal-body">
+        <div class="work-files" id="workFiles">
+          <button class="work-file active" data-target="w1">Professional Website</button>
+          <button class="work-file" data-target="w2">Discord Bots</button>
+          <button class="work-file" data-target="w3">Server Architecture</button>
+          <button class="work-file" data-target="w4">Minecraft Server </button>
+        </div>
+        <div class="work-panels" id="workPanels">
+          <div class="work-panel active" id="w1">
+            <div class="work-panel-label">// <span>Web Development</span></div>
+            <div class="work-panel-title">Community Website</div>
+            <div class="work-panel-desc">Built a responsive site with live server stats, member profiles, and a store integration for a gaming community.</div>
+            <div class="work-panel-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">SUPABASE</span></div>
+          </div>
+          <div class="work-panel" id="w2">
+            <div class="work-panel-label">// <span>Discord Bot</span></div>
+            <div class="work-panel-title">Moderation & Economy Bot</div>
+            <div class="work-panel-desc">Custom bot with auto-mod, leveling, and a virtual economy system according to your will.</div>
+            <div class="work-panel-tags"><span class="tag">Discord.js</span></div>
+          </div>
+          <div class="work-panel" id="w3">
+            <div class="work-panel-label">// <span>Discord Server</span></div>
+            <div class="work-panel-title">Server Architecture</div>
+            <div class="work-panel-desc">Designed and set up channel structure, roles, and permissions for active communities.</div>
+            <div class="work-panel-tags"><span class="tag">Discord API</span><span class="tag">Automation</span></div>
+          </div>
+          <div class="work-panel" id="w4">
+            <div class="work-panel-label">// <span>Minecraft Server</span></div>
+            <div class="work-panel-title">Custom Survival Network</div>
+            <div class="work-panel-desc">Set up and configured a multi-server Minecraft network with custom plugins, anti-cheat, and cross-server economy.</div>
+            <div class="work-panel-tags"><span class="tag">Survival</span><span class="tag">Proxy</span><span class="tag">Lifesteal</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deck" id="skills">
+    <div class="deck-head">
+      <div class="deck-title">Skills & Stack</div>
+      <div class="deck-count mono">03 / 05</div>
+    </div>
+    <div class="skills-showcase">
+      <div class="skill-card2 reveal">
+        <div class="skill-mono">W</div>
+        <div class="skill-card2-title">Web Development</div>
+        <div class="skill-card2-desc">Clean, responsive sites and pages from scratch with plain HTML, CSS, JavaScript & Supabase.</div>
+        <div class="skill-card2-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span></div>
+      </div>
+      <div class="skill-card2 reveal">
+        <div class="skill-mono">D</div>
+        <div class="skill-card2-title">Discord Bots</div>
+        <div class="skill-card2-desc">Moderation, economy, leveling & custom bot commands.</div>
+        <div class="skill-card2-tags"><span>Discord.js</span></div>
+      </div>
+      <div class="skill-card2 reveal">
+        <div class="skill-mono">S</div>
+        <div class="skill-card2-title">Discord Servers</div>
+        <div class="skill-card2-desc">Roles, permissions, channel structure & automation.</div>
+        <div class="skill-card2-tags"><span>Discord API</span><span>Automation</span></div>
+      </div>
+      <div class="skill-card2 reveal">
+        <div class="skill-mono">M</div>
+        <div class="skill-card2-title">Minecraft Servers</div>
+        <div class="skill-card2-desc">Server hosting, configuration, and network setup with Spigot / Paper / Velocity.</div>
+        <div class="skill-card2-tags"><span>Spigot</span><span>Proxy</span><span>Paper</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deck" id="services">
+    <div class="deck-head">
+      <div class="deck-title">Services & Pricing</div>
+      <div class="deck-count mono">04 / 05</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-label">Discord Bot</div>
+        <div class="price-title">Custom Bot</div>
+        <div class="price-amount">₹249<span>starting</span></div>
+        <ul class="price-features">
+          <li>Custom commands</li>
+          <li>Moderation / auto-mod</li>
+          <li>1 revision round</li>
+          <li>Basic hosting setup guide</li>
+        </ul>
+        <a href="#" class="price-cta discord-cta">Get started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-label">Discord</div>
+        <div class="price-title">Bot + Server Setup</div>
+        <div class="price-amount">₹199<span>starting</span></div>
+        <ul class="price-features">
+          <li>Full server structure & roles</li>
+          <li>Custom bot with economy/levels</li>
+          <li>Automation & welcome flow</li>
+          <li>2 revision rounds</li>
+        </ul>
+        <a href="#" class="price-cta discord-cta">Get started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-label">Minecraft</div>
+        <div class="price-title">Server Setup</div>
+        <div class="price-amount">₹299<span>starting</span></div>
+        <ul class="price-features">
+          <li>Server config & optimization</li>
+          <li>Plugin installation</li>
+          <li>Anti-cheat & backups</li>
+          <li>Basic support docs</li>
+        </ul>
+        <a href="#" class="price-cta discord-cta">Get started</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-label">Web</div>
+        <div class="price-title">Website Build</div>
+        <div class="price-amount">₹299<span>starting</span></div>
+        <ul class="price-features">
+          <li>Responsive design</li>
+          <li>Up to 5 pages</li>
+          <li>Basic SEO setup</li>
+          <li>1 month support</li>
+        </ul>
+        <a href="#" class="price-cta discord-cta">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="deck" id="contact">
+    <div class="deck-head">
+      <div class="deck-title">Contact</div>
+      <div class="deck-count mono">05 / 05</div>
+    </div>
+    <div class="contact-card">
+      <div>
+        <div class="contact-title display">LET'S BUILD<br>SOMETHING <span class="accent">GREAT.</span></div>
+        <p class="contact-sub">Have a project or role in mind? Send a message — I usually reply within a day or two.</p>
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/xvkovwpa" method="POST">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button class="btn btn-fill send-btn" type="submit">Send message</button>
+        <p class="form-note" id="formNote">Message goes straight to my inbox.</p>
+      </form>
+      <div class="form-sent" id="formSent">
+        <span class="status-dot"></span>
+        Message sent — thanks for reaching out, I'll get back to you soon.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 VISHU DEVS</span>
+  <div class="footer-social">
+    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.21.66.79.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+    </a>
+    <a href="https://discord.gg/Zq36Sc6qzF" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="discord-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 5.37a17.9 17.9 0 0 0-4.43-1.37c-.19.34-.41.8-.56 1.16a16.6 16.6 0 0 0-4.96 0c-.15-.37-.38-.82-.57-1.16-1.53.26-3 .74-4.43 1.38C2.6 9.14 1.85 12.8 2.17 16.42a18 18 0 0 0 5.48 2.77c.44-.6.84-1.24 1.18-1.92-.65-.24-1.27-.54-1.86-.9.16-.11.31-.23.46-.35a12.8 12.8 0 0 0 10.94 0c.15.12.3.24.46.35-.59.36-1.21.66-1.86.9.34.68.74 1.32 1.18 1.92a18 18 0 0 0 5.48-2.77c.38-4.2-.66-7.83-2.83-11.05ZM9.5 14.2c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2 1.8.91 1.78 2c0 1.1-.79 2-1.78 2Zm5.02 0c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2 1.8.91 1.78 2c0 1.1-.79 2-1.78 2Z"/></svg>
+    </a>
+    <a href="https://twitter.com/your-handle" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.6L4.8 22H1.7l8.2-9.3L1 2h7.1l4.9 6.1L18.9 2Zm-1.2 18h1.9L7.4 4h-2l12.3 16Z"/></svg>
+    </a>
+  </div>
+  <span>hello@example.com</span>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  const navOverlay = document.getElementById('navOverlay');
+  function closeNav(){
+    nav.classList.remove('open');
+    navOverlay.classList.remove('open');
+    toggle.classList.remove('open');
+  }
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    navOverlay.classList.toggle('open', isOpen);
+    toggle.classList.toggle('open', isOpen);
+  });
+  navOverlay.addEventListener('click', closeNav);
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ===== Theme toggle (black & white) =====
+  const themeToggle = document.getElementById('themeToggle');
+  const htmlEl = document.documentElement;
+  themeToggle.addEventListener('click', () => {
+    const isLight = htmlEl.getAttribute('data-theme') === 'light';
+    htmlEl.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    themeToggle.setAttribute('aria-pressed', String(!isLight));
+  });
+
+  // ===== Discord link — change this ONE value to update every "Get started" button =====
+  const DISCORD_INVITE_LINK = "https://discord.gg/Zq36Sc6qzF";
+  document.querySelectorAll('.discord-cta').forEach(el => {
+    el.href = DISCORD_INVITE_LINK;
+    el.target = "_blank";
+    el.rel = "noopener noreferrer";
+  });
+
+  // ===== Selected Work — terminal file tabs =====
+  const workFiles = document.querySelectorAll('.work-file');
+  workFiles.forEach(file => {
+    file.addEventListener('click', () => {
+      workFiles.forEach(f => f.classList.remove('active'));
+      document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+      file.classList.add('active');
+      document.getElementById(file.dataset.target).classList.add('active');
+    });
+  });
+
+  // ===== Back to top =====
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 600);
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ===== Contact form =====
+  const contactForm = document.getElementById('contactForm');
+  const formSent = document.getElementById('formSent');
+  const formNote = document.getElementById('formNote');
+  const sendBtn = contactForm.querySelector('.send-btn');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+    formNote.textContent = '';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        contactForm.classList.add('hide');
+        formSent.classList.add('show');
+        contactForm.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      formNote.textContent = 'Something went wrong — please try again or email me directly.';
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send message';
+    }
+  });
+
+  // ===== Scroll reveal animation =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el, i) => {
+    el.style.transitionDelay = (i % 6) * 0.06 + 's';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
